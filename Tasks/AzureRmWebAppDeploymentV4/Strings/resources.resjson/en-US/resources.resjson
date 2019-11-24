@@ -1,5 +1,5 @@
 {
-  "loc.friendlyName": "Azure App Service deploy",
+  "loc.friendlyName": "Azure App Service deploy (Ehab Version)",
   "loc.helpMarkDown": "[Learn more about this task](https://aka.ms/azurermwebdeployreadme)",
   "loc.description": "Deploy to Azure App Service a web, mobile, or API app using Docker, Java, .NET, .NET Core, Node.js, PHP, Python, or Ruby",
   "loc.instanceNameFormat": "Azure App Service Deploy: $(WebAppName)",
@@ -74,6 +74,8 @@
   "loc.input.help.XmlVariableSubstitution": "Variables defined in the build or release pipelines will be matched against the 'key' or 'name' entries in the appSettings, applicationSettings, and connectionStrings sections of any config file and parameters.xml. Variable Substitution is run after config transforms. <br/><br/> Note: If same variables are defined in the release pipeline and in the environment, then the environment variables will supersede the release pipeline variables.<br/>",
   "loc.input.label.JSONFiles": "JSON variable substitution",
   "loc.input.help.JSONFiles": "Provide new line separated list of JSON files to substitute the variable values. Files names are to be provided relative to the root folder. <br/> To substitute JSON variables that are nested or hierarchical, specify them using JSONPath expressions. <br/> <br/> For example, to replace the value of ‘ConnectionString’ in the sample below, you need to define a variable as ‘Data.DefaultConnection.ConnectionString’ in the build or release pipeline (or release pipeline's environment). <br/> {<br/>&nbsp;&nbsp;\"Data\": {<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"DefaultConnection\": {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"ConnectionString\": \"Server=(localdb)\\SQLEXPRESS;Database=MyDB;Trusted_Connection=True\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/> }<br/> Variable Substitution is run after configuration transforms. <br/><br/> Note: pipeline variables are excluded in substitution.",
+  "loc.input.label.JsonAliasPrefixVariableSubstitution": "Json alias prefix variable substitution",
+  "loc.input.help.JsonAliasPrefixVariableSubstitution": "Alias JSON file with alias by adding a colon after filename to prefix variables with this alias as variable group will be used only in the files with this alias.<br/>",
   "loc.messages.Invalidwebapppackageorfolderpathprovided": "Invalid App Service package or folder path provided: %s",
   "loc.messages.SetParamFilenotfound0": "Set parameters file not found: %s",
   "loc.messages.XDTTransformationsappliedsuccessfully": "XML Transformations applied successfully",

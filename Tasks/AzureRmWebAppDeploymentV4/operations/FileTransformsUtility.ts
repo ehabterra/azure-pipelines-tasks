@@ -22,7 +22,7 @@ export class FileTransformsUtility {
 
             if (applyFileTransformFlag) {
                 var isMSBuildPackage = !isFolderBasedDeployment && (await deployUtility.isMSDeployPackage(webPackage));
-                fileTransformationsUtility.fileTransformations(isFolderBasedDeployment, taskParams.JSONFiles, taskParams.XmlTransformation, taskParams.XmlVariableSubstitution, folderPath, isMSBuildPackage);
+                fileTransformationsUtility.fileTransformations(isFolderBasedDeployment, taskParams.JSONFiles, taskParams.JsonAliasPrefixVariableSubstitution, taskParams.XmlTransformation, taskParams.XmlVariableSubstitution, folderPath, isMSBuildPackage);
             }
 
             var output = await deployUtility.archiveFolderForDeployment(isFolderBasedDeployment, folderPath);
