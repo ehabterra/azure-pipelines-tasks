@@ -12,6 +12,7 @@ async function main() {
     let packagePath = webPackage.getPath();
     let fileType = tl.getInput("fileType", false);
     let targetFiles = tl.getDelimitedInput('targetFiles', '\n', false);
+    let jsonAliasPrefixVariableSubstitution = tl.getBoolInput('jsonAliasPrefixVariableSubstitution', false);
     let xmlTransformation = tl.getBoolInput('enableXmlTransform', false);
     let xmlTransformationRules = tl.getDelimitedInput('xmlTransformationRules', '\n', false);
     let applyFileTransformFlag = fileType || xmlTransformation;
@@ -19,11 +20,11 @@ async function main() {
         let isFolderBasedDeployment: boolean = tl.stats(packagePath).isDirectory();
         if(!isFolderBasedDeployment) {
             var folderPath = await deployUtility.generateTemporaryFolderForDeployment(isFolderBasedDeployment, packagePath, webPackage.getPackageType());
-            fileTransformationsUtility.advancedFileTransformations(isFolderBasedDeployment, targetFiles, xmlTransformation, fileType, folderPath, xmlTransformationRules);
+            fileTransformationsUtility.advancedFileTransformations(isFolderBasedDeployment, targetFiles, jsonAliasPrefixVariableSubstitution, xmlTransformation, fileType, folderPath, xmlTransformationRules);
             await zipUtility.archiveFolder(folderPath, path.dirname(packagePath), path.basename(packagePath));
         }
         else {
-            fileTransformationsUtility.advancedFileTransformations(isFolderBasedDeployment, targetFiles, xmlTransformation, fileType, packagePath, xmlTransformationRules);
+            fileTransformationsUtility.advancedFileTransformations(isFolderBasedDeployment, targetFiles, jsonAliasPrefixVariableSubstitution, xmlTransformation, fileType, packagePath, xmlTransformationRules);
         }
     }
     else {

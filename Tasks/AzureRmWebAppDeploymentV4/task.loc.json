@@ -1,5 +1,5 @@
 {
-  "id": "497D490F-EEA7-4F2B-AB94-48D9C1ACDCB1",
+  "id": "02c125e8-0ee2-11ea-95ed-a01d48aeb810",
   "name": "AzureRmWebAppDeployment",
   "friendlyName": "ms-resource:loc.friendlyName",
   "description": "ms-resource:loc.description",
@@ -14,11 +14,11 @@
     "Agent",
     "DeploymentGroup"
   ],
-  "author": "Microsoft Corporation",
+  "author": "Ehab Terra",
   "version": {
     "Major": 4,
-    "Minor": 160,
-    "Patch": 0
+    "Minor": 170,
+    "Patch": 1
   },
   "releaseNotes": "ms-resource:loc.releaseNotes",
   "minimumAgentVersion": "2.104.1",
@@ -435,6 +435,18 @@
       "defaultValue": "",
       "groupName": "FileTransformsAndVariableSubstitution",
       "helpMarkDown": "ms-resource:loc.input.help.JSONFiles"
+    },
+    {
+      "name": "JsonAliasPrefixVariableSubstitution",
+      "aliases": [
+        "enableJsonAliasPrefixVariableSubstitution"
+      ],
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.JsonAliasPrefixVariableSubstitution",
+      "required": false,
+      "defaultValue": false,
+      "groupName": "FileTransformsAndVariableSubstitution",
+      "helpMarkDown": "ms-resource:loc.input.help.JsonAliasPrefixVariableSubstitution"
     }
   ],
   "outputVariables": [

@@ -14,6 +14,7 @@ async function main() {
     let xmlTransformationRules = tl.getDelimitedInput('xmlTransformationRules', '\n', false);
     let xmlTargetFiles = tl.getDelimitedInput('xmlTargetFiles', '\n', false);
     let jsonTargetFiles = tl.getDelimitedInput('jsonTargetFiles', '\n', false);
+    let jsonAliasPrefixVariableSubstitution = tl.getBoolInput('jsonAliasPrefixVariableSubstitution', false);
     if(xmlTransformationRules.length == 0) {
         xmlTransformation = false;
     }
@@ -22,11 +23,11 @@ async function main() {
         let isFolderBasedDeployment: boolean = tl.stats(packagePath).isDirectory();
         if(!isFolderBasedDeployment) {
             var folderPath = await deployUtility.generateTemporaryFolderForDeployment(isFolderBasedDeployment, packagePath, webPackage.getPackageType());
-            fileTransformationsUtility.enhancedFileTransformations(isFolderBasedDeployment, xmlTransformation, folderPath, xmlTransformationRules, xmlTargetFiles, jsonTargetFiles);
+            fileTransformationsUtility.enhancedFileTransformations(isFolderBasedDeployment, xmlTransformation, folderPath, xmlTransformationRules, xmlTargetFiles, jsonTargetFiles, jsonAliasPrefixVariableSubstitution);
             await zipUtility.archiveFolder(folderPath, path.dirname(packagePath), path.basename(packagePath));
         }
         else {
-            fileTransformationsUtility.enhancedFileTransformations(isFolderBasedDeployment, xmlTransformation, packagePath, xmlTransformationRules, xmlTargetFiles, jsonTargetFiles);
+            fileTransformationsUtility.enhancedFileTransformations(isFolderBasedDeployment, xmlTransformation, packagePath, xmlTransformationRules, xmlTargetFiles, jsonTargetFiles, jsonAliasPrefixVariableSubstitution);
         }
     }
     else {

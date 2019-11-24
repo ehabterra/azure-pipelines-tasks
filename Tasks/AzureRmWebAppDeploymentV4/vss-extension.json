@@ -1,0 +1,36 @@
+{
+    "manifestVersion": 1,
+    "id": "AzureRmWebAppDeploymentEhabTerra",
+    "name": "Azure App Service deploy (Ehab Terra)",
+    "version": "0.0.1",
+    "publisher": "ehabterra",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Tools for building/releasing with Fabrikam. Includes one build/release task.",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "build-release-task/icon.png"        
+    },
+    "files": [
+        {
+            "path": "build-release-task"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "custom-build-release-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "build-release-task"
+            }
+        }
+    ]
+}
