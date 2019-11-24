@@ -14,7 +14,7 @@ var envVarObject = jsonSubUtil.createEnvTree([
     { name: 'dataSourceBindings.0.target', value: 'AppServiceName', secret: false},
     { name: alias_tt4 + delimiter + 'name', value: 'App Service Deploy1', secret: false },
     { name: alias_test + delimiter + 'name', value: 'App Service Deploy2', secret: false},
-    { name: 'name', value: 'App Service Deploy1', secret: false },
+    { name: 'name', value: 'App Service Deploy', secret: false },
     { name: 'tt2' + delimiter + 'name', value: 'App Service Deploy', secret: false },
     { name: alias_test + delimiter + 'Hello.World', value: 'Hello World3', secret: false },
     { name: alias_tt4 + delimiter + 'Hello.World', value: 'Hello World', secret: false },
