@@ -446,7 +446,7 @@
             "required": false,
             "defaultValue": false,
             "groupName": "FileTransformsAndVariableSubstitution",
-            "helpMarkDown": "Alias JSON file with alias by adding a colon after filename to prefix variables with this alias as variable group will be used only in the files with this alias.<br/>"
+            "helpMarkDown": "Alias JSON file with alias and delimit with a semi-colon after filename to prefix variables with this alias as variable group will be used only in the files with this alias.<br/>"
         }
     ],
     "outputVariables": [
