@@ -20,7 +20,6 @@ export class TaskParametersUtility {
             WebConfigParameters: tl.getInput('WebConfigParameters', false),
             XmlTransformation: tl.getBoolInput('XmlTransformation', false),
             JSONFiles: tl.getDelimitedInput('JSONFiles', '\n', false),
-            JsonAliasPrefixVariableSubstitution: tl.getBoolInput('JsonAliasPrefixVariableSubstitution', false),
             XmlVariableSubstitution: tl.getBoolInput('XmlVariableSubstitution', false),
             TakeAppOfflineFlag: tl.getBoolInput('TakeAppOfflineFlag', false),
             RenameFilesFlag: tl.getBoolInput('RenameFilesFlag', false),
@@ -160,7 +159,6 @@ export interface TaskParameters {
     WebConfigParameters?: string;
     XmlTransformation?: boolean;
     JSONFiles?: string[];
-    JsonAliasPrefixVariableSubstitution?: boolean;
     XmlVariableSubstitution?: boolean;
     UseWebDeploy?: boolean;
     DeploymentType?: DeploymentType;

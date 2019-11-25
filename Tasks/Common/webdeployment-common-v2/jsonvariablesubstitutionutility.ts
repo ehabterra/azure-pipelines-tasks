@@ -183,7 +183,7 @@ export function stripJsonComments(content) {
     return contentWithoutComments;
 }
 
-export function jsonVariableSubstitution(absolutePath, jsonSubFiles, jsonAliasPrefixVariableSubstitution: boolean , substituteAllTypes?: boolean) {
+export function jsonVariableSubstitution(absolutePath, jsonSubFiles , substituteAllTypes?: boolean) {
     var envVarObject = createEnvTree(tl.getVariables());
     let isSubstitutionApplied: boolean = false;
     for(let jsonSubFile of jsonSubFiles) {
@@ -191,16 +191,14 @@ export function jsonVariableSubstitution(absolutePath, jsonSubFiles, jsonAliasPr
         var jsonSubFile_alias: string = null;
         var jsonSubFile_file: string = jsonSubFile;
         
-        if (jsonAliasPrefixVariableSubstitution) {
-            var jsonSubFileWithAlias = jsonSubFile.split(alias_delimiter);
+        var jsonSubFileWithAlias = jsonSubFile.split(alias_delimiter);
 
-            if (jsonSubFileWithAlias.length > 1) {
-                jsonSubFile_file = jsonSubFileWithAlias[0];
-                jsonSubFile_alias = jsonSubFileWithAlias[1];
+        if (jsonSubFileWithAlias.length > 1) {
+            jsonSubFile_file = jsonSubFileWithAlias[0];
+            jsonSubFile_alias = jsonSubFileWithAlias[1];
 
-                if (jsonSubFile_alias.length == 0) {
-                    jsonSubFile_alias = null;
-                }
+            if (jsonSubFile_alias.length == 0) {
+                jsonSubFile_alias = null;
             }
         }
 

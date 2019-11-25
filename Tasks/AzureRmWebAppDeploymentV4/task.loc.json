@@ -435,18 +435,6 @@
       "defaultValue": "",
       "groupName": "FileTransformsAndVariableSubstitution",
       "helpMarkDown": "ms-resource:loc.input.help.JSONFiles"
-    },
-    {
-      "name": "JsonAliasPrefixVariableSubstitution",
-      "aliases": [
-        "enableJsonAliasPrefixVariableSubstitution"
-      ],
-      "type": "boolean",
-      "label": "ms-resource:loc.input.label.JsonAliasPrefixVariableSubstitution",
-      "required": false,
-      "defaultValue": false,
-      "groupName": "FileTransformsAndVariableSubstitution",
-      "helpMarkDown": "ms-resource:loc.input.help.JsonAliasPrefixVariableSubstitution"
     }
   ],
   "outputVariables": [

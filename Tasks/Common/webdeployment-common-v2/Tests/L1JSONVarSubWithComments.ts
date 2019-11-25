@@ -6,9 +6,7 @@ const alias_test: string = 'test';
 const alias_tt4: string = 'tt4'; 
 const delimiter: string = ';';
 
-process.env['TASK_TEST_TRACE'] = 1;
-
-var files = ['L1JSONVarSub/JSONWithComments.json' + delimiter + alias_test, 'L1JSONVarSub/JSONWithComments2.json' + delimiter + alias_tt4];
+var files = ['L1JSONVarSub/JSONWithComments.json' + delimiter + alias_test, 'L1JSONVarSub/JSONWithComments2.json' + delimiter + alias_tt4, 'L1JSONVarSub/JSONWithComments3.json'];
 
 var envVarObject = jsonSubUtil.createEnvTree([
     { name: 'dataSourceBindings.0.target', value: 'AppServiceName', secret: false},
@@ -49,23 +47,21 @@ function validateJSONWithComments() {
 }
 
 function validateJSONFiles() {
-    let jsonAliasPrefixVariableSubstitution: boolean = true;
-
     for (let jsonSubFile of files) {
 
         var jsonSubFile_alias: string = null;
         var jsonSubFile_file: string = jsonSubFile;
+        var aliasWithDelimiter: string = '';
+        
+        var jsonSubFileWithAlias = jsonSubFile.split(delimiter);
 
-        if (jsonAliasPrefixVariableSubstitution) {
-            var jsonSubFileWithAlias = jsonSubFile.split(delimiter);
+        if (jsonSubFileWithAlias.length > 1) {
+            jsonSubFile_file = jsonSubFileWithAlias[0];
+            jsonSubFile_alias = jsonSubFileWithAlias[1];
+            aliasWithDelimiter = jsonSubFile_alias + delimiter;
 
-            if (jsonSubFileWithAlias.length > 1) {
-                jsonSubFile_file = jsonSubFileWithAlias[0];
-                jsonSubFile_alias = jsonSubFileWithAlias[1];
-
-                if (jsonSubFile_alias.length == 0) {
-                    jsonSubFile_alias = null;
-                }
+            if (jsonSubFile_alias.length == 0) {
+                jsonSubFile_alias = null;
             }
         }
 
@@ -84,15 +80,15 @@ function validateJSONFiles() {
 
             jsonSubUtil.substituteJsonVariable(jsonObject, envVarObject, jsonSubFile_alias);
 
-            console.log(jsonSubFile_alias + delimiter + 'name: ' + envVarObject.child[jsonSubFile_alias + delimiter + 'name'].value)
+            console.log(aliasWithDelimiter + 'name: ' + envVarObject.child[aliasWithDelimiter + 'name'].value)
 
             if (jsonObject['dataSourceBindings']['0']['target'] != 'AppServiceName') {
                 throw new Error('JSON VAR SUB FAIL #1');
             }
-            if (jsonObject['name'] != envVarObject.child[jsonSubFile_alias + delimiter + 'name'].value) {
+            if (jsonObject['name'] != envVarObject.child[aliasWithDelimiter + 'name'].value) {
                 throw new Error('JSON VAR SUB FAIL #2');
             }
-            if (jsonObject['Hello']['World'] != envVarObject.child[jsonSubFile_alias + delimiter + 'Hello'].child['World'].value) {
+            if (jsonObject['Hello']['World'] != envVarObject.child[aliasWithDelimiter + 'Hello'].child['World'].value) {
                 throw new Error('JSON VAR SUB FAIL #3');
             }
             if (jsonObject['dataSourceBindings']['1']['parameters']['WebAppName'] != 'App Service Name params') {
