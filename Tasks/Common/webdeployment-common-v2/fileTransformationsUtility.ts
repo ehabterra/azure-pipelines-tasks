@@ -5,7 +5,7 @@ var jsonSubstitutionUtility = require('webdeployment-common-v2/jsonvariablesubst
 var xmlSubstitutionUtility = require('webdeployment-common-v2/xmlvariablesubstitutionutility.js');
 var xdtTransformationUtility = require('webdeployment-common-v2/xdttransformationutility.js');
 
-export function fileTransformations(isFolderBasedDeployment: boolean, JSONFiles: any, jsonAliasPrefixVariableSubstitution: boolean, xmlTransformation: boolean, xmlVariableSubstitution: boolean, folderPath: string, isMSBuildPackage: boolean) {
+export function fileTransformations(isFolderBasedDeployment: boolean, JSONFiles: any, xmlTransformation: boolean, xmlVariableSubstitution: boolean, folderPath: string, isMSBuildPackage: boolean) {
 
     if(xmlTransformation) {
         if(isMSBuildPackage) {
@@ -42,12 +42,12 @@ export function fileTransformations(isFolderBasedDeployment: boolean, JSONFiles:
     }
 
     if(JSONFiles.length != 0) {
-        jsonSubstitutionUtility.jsonVariableSubstitution(folderPath, JSONFiles, jsonAliasPrefixVariableSubstitution);
+        jsonSubstitutionUtility.jsonVariableSubstitution(folderPath, JSONFiles);
         console.log(tl.loc('JSONvariablesubstitutionappliedsuccessfully'));
     }
 }
 
-export function advancedFileTransformations(isFolderBasedDeployment: boolean, targetFiles: any, jsonAliasPrefixVariableSubstitution: boolean, xmlTransformation: boolean, variableSubstitutionFileFormat: string, folderPath: string, transformationRules: any) {
+export function advancedFileTransformations(isFolderBasedDeployment: boolean, targetFiles: any, xmlTransformation: boolean, variableSubstitutionFileFormat: string, folderPath: string, transformationRules: any) {
 
     if(xmlTransformation) {
         if(!tl.osType().match(/^Win/)) {
@@ -106,12 +106,12 @@ export function advancedFileTransformations(isFolderBasedDeployment: boolean, ta
         if(!targetFiles || targetFiles.length == 0) {
             targetFiles = ["**/*.json"];
         }
-        jsonSubstitutionUtility.jsonVariableSubstitution(folderPath, targetFiles, jsonAliasPrefixVariableSubstitution, true);
+        jsonSubstitutionUtility.jsonVariableSubstitution(folderPath, targetFiles, true);
         console.log(tl.loc('JSONvariablesubstitutionappliedsuccessfully'));
     }
 }
 
-export function enhancedFileTransformations(isFolderBasedDeployment: boolean, xmlTransformation: boolean, folderPath: string, transformationRules: any, xmlTargetFiles: any, jsonTargetFiles: any, jsonAliasPrefixVariableSubstitution: boolean) {
+export function enhancedFileTransformations(isFolderBasedDeployment: boolean, xmlTransformation: boolean, folderPath: string, transformationRules: any, xmlTargetFiles: any, jsonTargetFiles: any) {
 
     if(xmlTransformation) {
         if(!tl.osType().match(/^Win/)) {
@@ -160,7 +160,7 @@ export function enhancedFileTransformations(isFolderBasedDeployment: boolean, xm
     isSubstitutionApplied = true;
     if(jsonTargetFiles.length > 0) 
     {
-        isSubstitutionApplied = jsonSubstitutionUtility.jsonVariableSubstitution(folderPath, jsonTargetFiles, jsonAliasPrefixVariableSubstitution, true);
+        isSubstitutionApplied = jsonSubstitutionUtility.jsonVariableSubstitution(folderPath, jsonTargetFiles, true);
         if(isSubstitutionApplied) {
             console.log(tl.loc('JSONvariablesubstitutionappliedsuccessfully')); 
         } 
